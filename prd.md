@@ -1,14 +1,14 @@
-# **ZipSplit v1.0 (MVP) \- Kapsamlı Teknik Ürün Gereksinim Dokümanı (PRD)**
+# ZipSplit v1.0 (MVP) — Kapsamlı Teknik Ürün Gereksinim Dokümanı (PRD)
 
 **Hazırlayan:** Technical Product Owner (TPO)  
 **Vizyon:** Kurumsal gezginler için sıfır sürtünmeli harcama yönetimi.  
 **Versiyon:** 1.0 (MVP)
 
-## **1\. Proje Özeti ve Stratejik Hedef**
+## 1. Proje Özeti ve Stratejik Hedef
 
 ZipSplit, iş seyahati gerçekleştiren profesyonellerin harcama takibi, fiş arşivleme ve ekip içi borç dengesi süreçlerini dijitalleştiren, offline-first (önce çevrimdışı) prensibiyle çalışan bir iOS uygulamasıdır. Temel amaç, bir harcama girişinin 1.5 saniyeden kısa sürede tamamlanmasını ve seyahat sonunda saniyeler içinde muhasebeye uygun PDF raporu oluşturulmasını sağlamaktır.
 
-## **2\. Teknik Mimari ve Teknoloji Yığını**
+## 2. Teknik Mimari ve Teknoloji Yığını
 
 | Bileşen | Teknoloji Seçimi | Teknik Gerekçe   |
 | :---- | :---- | :---- |
@@ -18,7 +18,7 @@ ZipSplit, iş seyahati gerçekleştiren profesyonellerin harcama takibi, fiş ar
 | **Veritabanı (Cloud)** | Supabase (PostgreSQL) | İlişkisel veri güvenliği ve Vendor Lock-in riskini minimize eden açık kaynak SQL yapısı. |
 | **Dosya Depolama** | Supabase Storage | Fiş fotoğrafları için güvenli ve ölçeklenebilir S3 uyumlu depolama. |
 
-## **3\. Detaylı Veritabanı Şeması (ERD)**
+## 3. Detaylı Veritabanı Şeması (ERD)
 
 Veri tutarlılığı için PostgreSQL üzerinde kurulacak temel tablo yapıları:
 
@@ -52,7 +52,7 @@ Veri tutarlılığı için PostgreSQL üzerinde kurulacak temel tablo yapıları
 * user\_id (UUID, FK): Borçlu olan kullanıcı.  
 * owed\_amount (DECIMAL 10,2): Bu işlemden düşen borç payı.
 
-## **4\. Ekran Tasarımları ve Kullanıcı Akışları**
+## 4. Ekran Tasarımları ve Kullanıcı Akışları
 
 ### **4.1. Dashboard (Ana Ekran)**
 
@@ -72,7 +72,7 @@ Veri tutarlılığı için PostgreSQL üzerinde kurulacak temel tablo yapıları
 * **Kritik Bileşen:** "Hemen Paylaş" (Share Sheet) butonu.  
 * **Teknik Aksiyon:** PDF, Swift tarafında PDFKit kullanılarak cihaz içinde üretilir. Fiş fotoğrafları thumbnail olarak eklenir ve bulut linkleri gömülür.
 
-## **5\. User Stories ve Kabul Kriterleri (Acceptance Criteria)**
+## 5. User Stories ve Kabul Kriterleri (Acceptance Criteria)
 
 ### **User Story 1: Çevrimdışı Harcama Kaydı**
 
@@ -90,7 +90,7 @@ Veri tutarlılığı için PostgreSQL üzerinde kurulacak temel tablo yapıları
 * **AC2:** Görsel, istemci tarafında 1MB altına düşürülecek şekilde sıkıştırılmalıdır.  
 * **AC3:** Yükleme işlemi arka planda (Background Task) tamamlanmalı, kullanıcıyı engellememelidir.
 
-## **6\. API Kontratı ve Senkronizasyon Stratejisi**
+## 6. API Kontratı ve Senkronizasyon Stratejisi
 
 | Endpoint | Method | Açıklama   |
 | :---- | :---- | :---- |
@@ -98,8 +98,8 @@ Veri tutarlılığı için PostgreSQL üzerinde kurulacak temel tablo yapıları
 | /api/v1/groups/{id}/balances | GET | Net borç dengesini (Settlement) hesaplar. |
 | /api/v1/storage/upload-url | GET | Güvenli görsel yükleme için geçici URL (Presigned URL) döndürür. |
 
-## **7\. Non-Functional Requirements (NFR)**
+## 7. Non-Functional Requirements (NFR)
 
 * **Güvenlik:** Apple Sign-In zorunludur. Tüm API trafiği HTTPS/TLS 1.3 ile korunacaktır.  
-* **Performans:** Uygulama soğuk açılış (Cold Launch) süresi \< 1.5 saniye olmalıdır.  
+* **Performans:** Uygulama soğuk açılış (Cold Launch) süresi < 1.5 saniye olmalıdır.  
 * **Maliyet:** PDF üretimi tamamen istemci tarafında yapılarak sunucu maliyetleri minimize edilecektir.
