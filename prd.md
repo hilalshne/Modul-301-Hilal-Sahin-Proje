@@ -2,7 +2,9 @@
 
 **Hazırlayan:** Technical Product Owner (TPO)  
 **Vizyon:** Kurumsal gezginler için sıfır sürtünmeli harcama yönetimi.  
-**Versiyon:** 1.0 (MVP)
+**Versiyon:** 1.0 (MVP)  
+**Son güncelleme:** 2026-04-19  
+**Doküman durumu:** MVP — aktif geliştirme
 
 ## 1. Proje Özeti ve Stratejik Hedef
 
@@ -22,20 +24,20 @@ ZipSplit, iş seyahati gerçekleştiren profesyonellerin harcama takibi, fiş ar
 
 Veri tutarlılığı için PostgreSQL üzerinde kurulacak temel tablo yapıları:
 
-### **3.1. Tablo: users**
+### 3.1. Tablo: users
 
 * id (UUID, PK): Kullanıcının benzersiz kimliği (Auth ID).  
 * email (VARCHAR, Unique): İletişim e-postası.  
 * full\_name (VARCHAR): Kullanıcı adı ve soyadı.
 
-### **3.2. Tablo: groups (Seyahat Grupları)**
+### 3.2. Tablo: groups (Seyahat Grupları)
 
 * id (UUID, PK): Grup kimliği.  
 * title (VARCHAR): Seyahat adı (Örn: "Barselona Konferansı").  
 * base\_currency (VARCHAR): Gruba ait ana para birimi (USD, EUR, TRY).  
 * invite\_code (VARCHAR, Unique): Katılım için üretilen 8 haneli kod.
 
-### **3.3. Tablo: transactions (Harcamalar)**
+### 3.3. Tablo: transactions (Harcamalar)
 
 * id (UUID, PK): Harcama kimliği.  
 * group\_id (UUID, FK): Ait olduğu grup.  
@@ -45,7 +47,7 @@ Veri tutarlılığı için PostgreSQL üzerinde kurulacak temel tablo yapıları
 * receipt\_path (VARCHAR, Nullable): Storage üzerindeki görsel yolu.  
 * created\_at (TIMESTAMP): Kayıt zamanı.
 
-### **3.4. Tablo: transaction\_splits (Borç Dağılımı)**
+### 3.4. Tablo: transaction\_splits (Borç Dağılımı)
 
 * id (UUID, PK): Dağılım kimliği.  
 * transaction\_id (UUID, FK): İlgili harcama.  
@@ -54,19 +56,19 @@ Veri tutarlılığı için PostgreSQL üzerinde kurulacak temel tablo yapıları
 
 ## 4. Ekran Tasarımları ve Kullanıcı Akışları
 
-### **4.1. Dashboard (Ana Ekran)**
+### 4.1. Dashboard (Ana Ekran)
 
 * **Fonksiyon:** Aktif seyahat gruplarının listelenmesi.  
 * **Kritik Bileşen:** Sağ alt köşede yüzen "+" butonu (Yeni seyahat başlatma).  
 * **Teknik Aksiyon:** SwiftData üzerinden lokaldeki grupları anında render eder, arka planda API ile senkronize olur.
 
-### **4.2. Harcama Giriş Ekranı**
+### 4.2. Harcama Giriş Ekranı
 
 * **Fonksiyon:** Harcama miktarının ve detaylarının girilmesi.  
 * **Kritik Bileşen:** Sayfa açılır açılmaz odağı alan sayısal klavye ve kamera ikonu.  
 * **Split Mantığı:** Varsayılan olarak gruptaki herkes seçili gelir (Eşit bölüşüm).
 
-### **4.3. Raporlama ve Dışa Aktarma**
+### 4.3. Raporlama ve Dışa Aktarma
 
 * **Fonksiyon:** PDF raporu oluşturma.  
 * **Kritik Bileşen:** "Hemen Paylaş" (Share Sheet) butonu.  
@@ -74,7 +76,7 @@ Veri tutarlılığı için PostgreSQL üzerinde kurulacak temel tablo yapıları
 
 ## 5. User Stories ve Kabul Kriterleri (Acceptance Criteria)
 
-### **User Story 1: Çevrimdışı Harcama Kaydı**
+### User Story 1: Çevrimdışı Harcama Kaydı
 
 **Gereksinim:** Bir kurumsal gezgin olarak, internetimin olmadığı anlarda harcama girebilmek istiyorum.
 
@@ -82,7 +84,7 @@ Veri tutarlılığı için PostgreSQL üzerinde kurulacak temel tablo yapıları
 * **AC2:** Harcama, listede "Senkronizasyon Bekliyor" ikonu ile gösterilmelidir.  
 * **AC3:** İnternet geldiğinde veri kaybı olmadan otomatik olarak buluta aktarılmalıdır.
 
-### **User Story 2: Fiş Fotoğrafı Ekleme**
+### User Story 2: Fiş Fotoğrafı Ekleme
 
 **Gereksinim:** Muhasebe onayı için harcamaya anında fiş fotoğrafı ekleyebilmek istiyorum.
 
