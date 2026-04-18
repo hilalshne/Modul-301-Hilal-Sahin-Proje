@@ -1,4 +1,6 @@
-# **ZipSplit v1.0 (MVP) \- Kapsamlı Teknik Ürün Gereksinim Dokümanı (PRD)**
+# ZipSplit MVP Teknik Ürün Gereksinim Dokümanı
+
+**Açıklama:** ZipSplit MVP Teknik Ürün Gereksinim Dokümanı
 
 **Hazırlayan:** Technical Product Owner (TPO)  
 **Vizyon:** Kurumsal gezginler için sıfır sürtünmeli harcama yönetimi.  
